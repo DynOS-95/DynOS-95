@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
 import { AppBar, Button, MenuList, MenuListItem, Separator, Toolbar } from "react95";
-import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 
 /**
  * Site header
@@ -11,7 +11,7 @@ export const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <AppBar>
+    <AppBar style={{ position: "initial" }}>
       <Toolbar style={{ justifyContent: "space-between" }}>
         <div style={{ position: "relative", display: "inline-block" }}>
           <Button onClick={() => setOpen(!open)} active={open} style={{ fontWeight: "bold" }}>
@@ -48,7 +48,7 @@ export const Header = () => {
             </MenuList>
           )}
         </div>
-        <RainbowKitCustomConnectButton />
+        <DynamicWidget />
       </Toolbar>
     </AppBar>
   );

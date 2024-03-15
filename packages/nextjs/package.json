@@ -11,9 +11,12 @@
     "format": "prettier --write . '!(node_modules|.next|contracts)/**/*'",
     "check-types": "tsc --noEmit --incremental",
     "vercel": "vercel",
-    "vercel:yolo": "vercel --build-env NEXT_PUBLIC_IGNORE_BUILD_ERROR=true"
+    "vercel:yolo": "vercel pull && NEXT_PUBLIC_IGNORE_BUILD_ERROR=true vercel build --prod && vercel deploy --prebuilt --prod",
+    "vercel:deploy": "vercel pull && vercel build --prod && vercel deploy --prebuilt --prod"
   },
   "dependencies": {
+    "@dynamic-labs/sdk-react-core": "^1.3.1",
+    "@dynamic-labs/wagmi-connector": "^1.3.1",
     "@ethersproject/providers": "^5.7.2",
     "@heroicons/react": "^2.0.11",
     "@rainbow-me/rainbowkit": "1.3.5",
@@ -30,6 +33,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
     "react95": "^4.0.0",
+    "sharp": "0.33.1",
     "styled-components": "^6.1.8",
     "use-debounce": "^8.0.4",
     "usehooks-ts": "^2.13.0",

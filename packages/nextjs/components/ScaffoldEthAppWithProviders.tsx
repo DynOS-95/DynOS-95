@@ -1,21 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
-import { useTheme } from "next-themes";
+import { useEffect } from "react";
+import { Header } from "./Header";
+import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
+import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { styleReset } from "react95";
 import original from "react95/dist/themes/original";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
-import { WagmiConfig } from "wagmi";
 import { Footer } from "~~/components/Footer";
-import { Header } from "~~/components/Header";
-import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { ProgressBar } from "~~/components/scaffold-eth/ProgressBar";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
 import { useGlobalState } from "~~/services/store/store";
-import { wagmiConfig } from "~~/services/web3/wagmiConfig";
-import { appChains } from "~~/services/web3/wagmiConnectors";
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
@@ -44,28 +41,21 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const ScaffoldEthAppWithProviders = ({ children }: { children: React.ReactNode }) => {
-  const { resolvedTheme } = useTheme();
-  const isDarkMode = resolvedTheme === "dark";
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
-    <WagmiConfig config={wagmiConfig}>
+    <DynamicContextProvider
+      settings={{
+        environmentId: "b64bda72-3b45-4d12-bf90-7b2591df405e",
+        walletConnectors: [EthereumWalletConnectors],
+      }}
+    >
+      {" "}
       <GlobalStyles />
-
       <ThemeProvider theme={original}>
         <ProgressBar />
-        <RainbowKitProvider
-          chains={appChains.chains}
-          avatar={BlockieAvatar}
-          theme={mounted ? (isDarkMode ? darkTheme() : lightTheme()) : lightTheme()}
-        >
+        <DynamicWagmiConnector>
           <ScaffoldEthApp>{children}</ScaffoldEthApp>
-        </RainbowKitProvider>
+        </DynamicWagmiConnector>
       </ThemeProvider>
-    </WagmiConfig>
+    </DynamicContextProvider>
   );
 };

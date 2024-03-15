@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
+import { Button } from "react95";
 import { hardhat } from "viem/chains";
 import { CurrencyDollarIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { HeartIcon } from "@heroicons/react/24/outline";
-import { SwitchTheme } from "~~/components/SwitchTheme";
 import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
 import { Faucet } from "~~/components/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
@@ -24,23 +24,25 @@ export const Footer = () => {
           <div className="flex flex-col md:flex-row gap-2 pointer-events-auto">
             {nativeCurrencyPrice > 0 && (
               <div>
-                <div className="btn btn-primary btn-sm font-normal gap-1 cursor-auto">
+                <Button>
                   <CurrencyDollarIcon className="h-4 w-4" />
                   <span>{nativeCurrencyPrice}</span>
-                </div>
+                </Button>
               </div>
             )}
             {isLocalNetwork && (
               <>
                 <Faucet />
-                <Link href="/blockexplorer" passHref className="btn btn-primary btn-sm font-normal gap-1">
-                  <MagnifyingGlassIcon className="h-4 w-4" />
-                  <span>Block Explorer</span>
+
+                <Link href="/blockexplorer" passHref className="gap-1">
+                  <Button>
+                    <MagnifyingGlassIcon className="h-4 w-4" />
+                    <span>Block Explorer</span>
+                  </Button>
                 </Link>
               </>
             )}
           </div>
-          <SwitchTheme className={`pointer-events-auto ${isLocalNetwork ? "self-end md:self-auto" : ""}`} />
         </div>
       </div>
       <div className="w-full">

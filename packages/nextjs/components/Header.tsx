@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
+import { DynamicWidget, useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import { AppBar, Button, MenuList, MenuListItem, Separator, Toolbar } from "react95";
 
 /**
@@ -9,6 +9,7 @@ import { AppBar, Button, MenuList, MenuListItem, Separator, Toolbar } from "reac
  */
 export const Header = () => {
   const [open, setOpen] = useState(false);
+  const { setShowAuthFlow, isAuthenticated } = useDynamicContext();
 
   return (
     <AppBar style={{ position: "initial" }}>
@@ -40,7 +41,7 @@ export const Header = () => {
               </MenuListItem>
               <Separator />
               <MenuListItem disabled>
-                <span role="img" aria-label="🔙">
+                <span role="img" aria-label="🔙" className="bg-red-400">
                   🔙
                 </span>
                 Logout
@@ -48,7 +49,13 @@ export const Header = () => {
             </MenuList>
           )}
         </div>
-        <DynamicWidget />
+        {isAuthenticated ? (
+          <DynamicWidget />
+        ) : (
+          <Button primary onClick={() => setShowAuthFlow(true)}>
+            Sign in
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   );

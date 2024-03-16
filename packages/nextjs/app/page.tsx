@@ -14,9 +14,7 @@ const targetNetworks = getTargetNetworks();
 
 const Home: NextPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedNetwork, setSelectedNetwork] = useState(() => {
-    return targetNetworks[0];
-  });
+  const [selectedNetwork] = useState(targetNetworks[0]);
   const [appUrl, setAppUrl] = useState("");
   const [debounceAppUrl] = useDebounceValue(appUrl, 500);
 
@@ -55,22 +53,6 @@ const Home: NextPage = () => {
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="mb-6">
-          <select
-            className="select select-bordered w-full max-w-xs "
-            onChange={e => {
-              setSelectedNetwork(targetNetworks[e.target.selectedIndex]);
-            }}
-          >
-            {targetNetworks.map(network => {
-              return (
-                <option key={network.id} value={network.rpcUrls.default.http[0]}>
-                  {network.name}
-                </option>
-              );
-            })}
-          </select>
-        </div>
         <div className="px-5 mb-4">
           <Button
             onDoubleClick={() => {

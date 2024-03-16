@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { Header } from "./Header";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+import { ZeroDevSmartWalletConnectors } from "@dynamic-labs/ethereum-aa";
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { ImpersonatorIframeProvider } from "@impersonator/iframe";
@@ -46,7 +47,7 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
     <DynamicContextProvider
       settings={{
         environmentId: "b64bda72-3b45-4d12-bf90-7b2591df405e",
-        walletConnectors: [EthereumWalletConnectors],
+        walletConnectors: [EthereumWalletConnectors, ZeroDevSmartWalletConnectors],
       }}
     >
       <GlobalStyles />

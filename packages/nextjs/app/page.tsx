@@ -1,42 +1,32 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ImpersonatorIframe, useImpersonatorIframe } from "@impersonator/iframe";
+import { ModalIframe } from "./_components/ModalIframe";
+import { useImpersonatorIframe } from "@impersonator/iframe";
 import type { NextPage } from "next";
-import { Button, Window, WindowHeader } from "react95";
+import { Button } from "react95";
 import { useDebounceValue } from "usehooks-ts";
-import { isAddress } from "viem";
 import { useAccount } from "wagmi";
 import { Address, InputBase } from "~~/components/scaffold-eth";
 import { useTransactor } from "~~/hooks/scaffold-eth";
+import { isValidUrl } from "~~/utils/isValidUrl";
 import { getTargetNetworks } from "~~/utils/scaffold-eth";
 
 const targetNetworks = getTargetNetworks();
 
-const isValidUrl = (url: string) => {
-  try {
-    new URL(url);
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
-
 const Home: NextPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const { address: connectedAddress } = useAccount();
-
-  const { latestTransaction, onUserTxConfirm, onTxReject } = useImpersonatorIframe();
-
   const [selectedNetwork, setSelectedNetwork] = useState(() => {
     return targetNetworks[0];
   });
   const [appUrl, setAppUrl] = useState("");
-
   const [debounceAppUrl] = useDebounceValue(appUrl, 500);
 
+  const { address: connectedAddress } = useAccount();
+
   const writeTxn = useTransactor();
+
+  const { latestTransaction, onUserTxConfirm, onTxReject } = useImpersonatorIframe();
 
   useEffect(() => {
     const makeTransaciton = async () => {
@@ -113,48 +103,13 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      {modalIsOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-3 md:p-0 z-10"
-          onClick={() => setModalIsOpen(false)}
-        >
-          <Window className="window w-[95%] md:w-10/12 h-[80%]">
-            <WindowHeader className="window-title flex justify-between">
-              {appUrl && <span>{appUrl}</span>}
-              <Button onClick={() => setModalIsOpen(false)}>
-                <span className="close-icon" />X
-              </Button>
-            </WindowHeader>
-            {connectedAddress && isAddress(connectedAddress) && isValidUrl(debounceAppUrl) ? (
-              <div className="flex items-center flex-col flex-grow p-4 rounded-md h-full">
-                <div className="border-2 border-gray-200 rounded-md  w-full h-full">
-                  <div className="w-full rounded-md p-1 h-full">
-                    <ImpersonatorIframe
-                      key={selectedNetwork.name + connectedAddress + debounceAppUrl}
-                      height={"100%"}
-                      width={"100%"} //set it to the browser width
-                      src={debounceAppUrl}
-                      address={connectedAddress}
-                      rpcUrl={selectedNetwork.rpcUrls.default.http[0]}
-                    />
-                  </div>
-                </div>
-                {/* <div className="p-4 max-w-md">
-                  {latestTransaction ? (
-                    <>
-                      <h1 className="text-xl font-bold mb-2">Latest transaction:</h1>
-                      <div className="p-2 bg-gray-800 text-white rounded-md overflow-auto">
-                        <pre className="font-mono text-sm">
-                          <code>{JSON.stringify(latestTransaction, null, 2)}</code>
-                        </pre>
-                      </div>
-                    </>
-                  ) : null}
-                </div> */}
-              </div>
-            ) : null}
-          </Window>
-        </div>
+      {connectedAddress && modalIsOpen && (
+        <ModalIframe
+          appUrl={debounceAppUrl}
+          selectedNetwork={selectedNetwork}
+          setModalIsOpen={setModalIsOpen}
+          address={connectedAddress}
+        />
       )}
     </>
   );

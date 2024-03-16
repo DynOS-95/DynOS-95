@@ -16,7 +16,7 @@ export const Footer = () => {
   const isLocalNetwork = targetNetwork.id === hardhat.id;
 
   return (
-    <div className="min-h-0 py-5 px-1 mb-11 lg:mb-0">
+    <div className="min-h-0 py-5 px-1 mb-11 lg:mb-0 flex justify-end">
       <div>
         <div className="fixed flex justify-between items-center w-full z-10 p-4 bottom-0 left-0 pointer-events-none">
           <div className="flex flex-col md:flex-row gap-2 pointer-events-auto">
@@ -42,6 +42,10 @@ export const Footer = () => {
             )}
           </div>
         </div>
+      </div>
+      <div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/assets/clippy-animation.gif" alt="clippy" className="w-[115px] m-4 mb-0" />
       </div>
     </div>
   );

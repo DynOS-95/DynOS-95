@@ -52,7 +52,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="flex items-center flex-row">
+      <div className="flex flex-col gap-8">
         <div>
           <Image
             src="/assets/uniswap.png"
@@ -63,6 +63,31 @@ const Home: NextPage = () => {
             onDoubleClick={() => {
               setAppUrl("https://app.uniswap.org/swap");
               setModalIsOpen(true);
+            }}
+          />
+        </div>
+        <div>
+          <Image
+            src="/assets/aave.png"
+            className="cursor-pointer"
+            alt="aave"
+            width={100}
+            height={100}
+            onDoubleClick={() => {
+              setAppUrl("https://app.aave.com/");
+              setModalIsOpen(true);
+            }}
+          />
+        </div>
+        <div>
+          <Image
+            src="/assets/new-dapp.png"
+            className="cursor-pointer"
+            alt="new"
+            width={100}
+            height={100}
+            onDoubleClick={() => {
+              console.log("To be implemented");
             }}
           />
         </div>

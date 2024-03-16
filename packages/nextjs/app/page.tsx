@@ -7,6 +7,7 @@ import { useImpersonatorIframe } from "@impersonator/iframe";
 import type { NextPage } from "next";
 import { useDebounceValue } from "usehooks-ts";
 import { useAccount } from "wagmi";
+import { TokenCounter } from "~~/app/_components/TokenCounter";
 import { useTransactor } from "~~/hooks/scaffold-eth";
 import { getTargetNetworks } from "~~/utils/scaffold-eth";
 
@@ -52,44 +53,49 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-8">
-        <div>
-          <Image
-            src="/assets/uniswap.png"
-            className="cursor-pointer"
-            alt="uniswap"
-            width={100}
-            height={100}
-            onDoubleClick={() => {
-              setAppUrl("https://app.uniswap.org/swap");
-              setModalIsOpen(true);
-            }}
-          />
+      <div className="flex justify-between  ">
+        <div className="flex flex-col gap-8">
+          <div>
+            <Image
+              src="/assets/uniswap.png"
+              className="cursor-pointer"
+              alt="uniswap"
+              width={100}
+              height={100}
+              onDoubleClick={() => {
+                setAppUrl("https://app.uniswap.org/swap");
+                setModalIsOpen(true);
+              }}
+            />
+          </div>
+          <div>
+            <Image
+              src="/assets/aave.png"
+              className="cursor-pointer"
+              alt="aave"
+              width={100}
+              height={100}
+              onDoubleClick={() => {
+                setAppUrl("https://app.aave.com/");
+                setModalIsOpen(true);
+              }}
+            />
+          </div>
+          <div>
+            <Image
+              src="/assets/new-dapp.png"
+              className="cursor-pointer"
+              alt="new"
+              width={100}
+              height={100}
+              onDoubleClick={() => {
+                console.log("To be implemented");
+              }}
+            />
+          </div>
         </div>
         <div>
-          <Image
-            src="/assets/aave.png"
-            className="cursor-pointer"
-            alt="aave"
-            width={100}
-            height={100}
-            onDoubleClick={() => {
-              setAppUrl("https://app.aave.com/");
-              setModalIsOpen(true);
-            }}
-          />
-        </div>
-        <div>
-          <Image
-            src="/assets/new-dapp.png"
-            className="cursor-pointer"
-            alt="new"
-            width={100}
-            height={100}
-            onDoubleClick={() => {
-              console.log("To be implemented");
-            }}
-          />
+          <TokenCounter />
         </div>
       </div>
 

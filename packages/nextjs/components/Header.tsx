@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
 import { AppBar, Button, MenuList, MenuListItem, Separator, Toolbar } from "react95";
 
@@ -9,6 +9,7 @@ import { AppBar, Button, MenuList, MenuListItem, Separator, Toolbar } from "reac
  */
 export const Header = () => {
   const [open, setOpen] = useState(false);
+  const widgetRef = useRef(null);
 
   return (
     <AppBar style={{ position: "initial" }}>
@@ -40,7 +41,7 @@ export const Header = () => {
               </MenuListItem>
               <Separator />
               <MenuListItem disabled>
-                <span role="img" aria-label="🔙">
+                <span role="img" aria-label="🔙" className="bg-red-400">
                   🔙
                 </span>
                 Logout
@@ -48,7 +49,20 @@ export const Header = () => {
             </MenuList>
           )}
         </div>
-        <DynamicWidget />
+        <Button
+          primary
+          onClick={() => {
+            console.log("widgetRef", widgetRef);
+            if (widgetRef.current) {
+              console.log("clicking widgetRef!");
+              // widgetRef.current.click();
+            }
+          }}
+        >
+          <div ref={widgetRef}>
+            <DynamicWidget innerButtonComponent="Connect" />
+          </div>
+        </Button>
       </Toolbar>
     </AppBar>
   );

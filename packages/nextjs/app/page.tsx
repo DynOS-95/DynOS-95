@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImpersonatorIframe, useImpersonatorIframe } from "@impersonator/iframe";
 import type { NextPage } from "next";
 import { Button, Window, WindowHeader } from "react95";
@@ -9,7 +9,7 @@ import { isAddress } from "viem";
 import { useAccount } from "wagmi";
 import { Address, InputBase } from "~~/components/scaffold-eth";
 import { useTransactor } from "~~/hooks/scaffold-eth";
-import { getTargetNetworks, notification } from "~~/utils/scaffold-eth";
+import { getTargetNetworks } from "~~/utils/scaffold-eth";
 
 const targetNetworks = getTargetNetworks();
 
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
 
   const { address: connectedAddress } = useAccount();
 
-  const { latestTransaction } = useImpersonatorIframe();
+  const { latestTransaction, onUserTxConfirm, onTxReject } = useImpersonatorIframe();
 
   const [selectedNetwork, setSelectedNetwork] = useState(() => {
     return targetNetworks[0];
@@ -38,28 +38,31 @@ const Home: NextPage = () => {
 
   const writeTxn = useTransactor();
 
-  const handleWrite = async () => {
-    if (!latestTransaction || !connectedAddress) {
-      return notification.error("Please make a transaction");
-    }
-    try {
-      /* const makeWriteWithParams = () => writeAsync();
-        await writeTxn(makeWriteWithParams); */
-      const txHash = await writeTxn({
-        // @ts-expect-error
-        to: latestTransaction.to,
-        // @ts-expect-error
-        value: latestTransaction.value,
-        // @ts-expect-error
-        data: latestTransaction.data,
-        chain: targetNetworks[0],
-        account: connectedAddress,
-      });
-      console.log("⚡️ ~ file: WriteOnlyFunctionForm.tsx:handleWrite ~ test", txHash);
-    } catch (e: any) {
-      console.error("⚡️ ~ file: WriteOnlyFunctionForm.tsx:handleWrite ~ error", e);
-    }
-  };
+  useEffect(() => {
+    const makeTransaciton = async () => {
+      try {
+        if (!connectedAddress || !latestTransaction?.id) return;
+        const txHash = await writeTxn({
+          // @ts-expect-error
+          to: latestTransaction.to,
+          // @ts-expect-error
+          value: latestTransaction.value,
+          // @ts-expect-error
+          data: latestTransaction.data,
+          chain: targetNetworks[0],
+          account: connectedAddress,
+        });
+        if (!txHash) return;
+        onUserTxConfirm(txHash, latestTransaction?.id);
+        console.log("⚡️ ~ file: WriteOnlyFunctionForm.tsx:handleWrite ~ test", txHash);
+      } catch (e: any) {
+        console.error("⚡️ ~ file: WriteOnlyFunctionForm.tsx:handleWrite ~ error", e);
+        onTxReject(latestTransaction?.id);
+      }
+    };
+    makeTransaciton();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [connectedAddress, latestTransaction?.id]);
 
   return (
     <>
@@ -81,9 +84,6 @@ const Home: NextPage = () => {
           >
             Uniswap
           </Button>
-          <button className="btn btn-primary btn-sm ml-5" onClick={handleWrite}>
-            Set Greeting
-          </button>
         </div>
         <div className="w-[400px]">
           <InputBase placeholder="https://app.uniswap.org/swap" value={appUrl} onChange={setAppUrl} />
@@ -139,7 +139,7 @@ const Home: NextPage = () => {
                     />
                   </div>
                 </div>
-                <div className="p-4 max-w-md">
+                {/* <div className="p-4 max-w-md">
                   {latestTransaction ? (
                     <>
                       <h1 className="text-xl font-bold mb-2">Latest transaction:</h1>
@@ -150,7 +150,7 @@ const Home: NextPage = () => {
                       </div>
                     </>
                   ) : null}
-                </div>
+                </div> */}
               </div>
             ) : null}
           </Window>

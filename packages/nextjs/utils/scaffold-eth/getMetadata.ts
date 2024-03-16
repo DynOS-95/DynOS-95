@@ -9,9 +9,7 @@ export const getMetadata = ({
   description: string;
   imageRelativePath?: string;
 }): Metadata => {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : `http://localhost:${process.env.PORT || 3000}`;
+  const baseUrl = "https://dynos95.vercel.app";
   const imageUrl = `${baseUrl}${imageRelativePath}`;
   return {
     title: title,

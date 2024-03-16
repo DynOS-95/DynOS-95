@@ -25,11 +25,11 @@ export const ModalIframe = ({ setModalIsOpen, appUrl, address, selectedNetwork }
         </WindowHeader>
         {address && isAddress(address) && isValidUrl(appUrl) ? (
           <div className="flex items-center flex-col flex-grow p-4 rounded-md h-full">
-            <div className="border-2 border-gray-200 rounded-md  w-full h-full">
+            <div className="border-2 border-gray-200 rounded-md w-full h-full">
               <div className="w-full rounded-md p-1 h-full">
                 <ImpersonatorIframe
                   key={selectedNetwork.name + address + appUrl}
-                  height={"100%"}
+                  height={"95%"}
                   width={"100%"} //set it to the browser width
                   src={appUrl}
                   address={address}

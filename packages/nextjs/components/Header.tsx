@@ -33,7 +33,7 @@ export const Header = () => {
         <div style={{ position: "relative", display: "inline-block" }}>
           <Button onClick={() => setOpen(!open)} active={open} style={{ fontWeight: "bold" }}>
             <div className="flex gap-1.5 items-center">
-              <Image src="/assets/dyno.png" width={20} height={20} alt="DynOS logo" />
+              <Image src="/assets/dyno.png" width={25} height={25} alt="DynOS logo" />
               DynOS 95
             </div>
           </Button>

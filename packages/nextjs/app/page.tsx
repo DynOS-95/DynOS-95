@@ -3,17 +3,20 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ModalIframe } from "./_components/ModalIframe";
+import { ModalNewDappInput } from "./_components/ModalNewDappInput";
 import { useImpersonatorIframe } from "@impersonator/iframe";
 import type { NextPage } from "next";
 import { useDebounceValue } from "usehooks-ts";
 import { useAccount } from "wagmi";
 import { useTransactor } from "~~/hooks/scaffold-eth";
-import { getTargetNetworks } from "~~/utils/scaffold-eth";
+import { isValidUrl } from "~~/utils/isValidUrl";
+import { getTargetNetworks, notification } from "~~/utils/scaffold-eth";
 
 const targetNetworks = getTargetNetworks();
 
 const Home: NextPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [newDappModalIsOpen, setNewDappModalIsOpen] = useState(false);
   const [selectedNetwork] = useState(targetNetworks[0]);
   const [appUrl, setAppUrl] = useState("");
   const [debounceAppUrl] = useDebounceValue(appUrl, 500);
@@ -50,6 +53,12 @@ const Home: NextPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [connectedAddress, latestTransaction?.id]);
 
+  const handleIconDoubleClick = (url: string) => {
+    if (!connectedAddress) return notification.error("Please connect your wallet");
+    setAppUrl(url);
+    setModalIsOpen(true);
+  };
+
   return (
     <>
       <div className="flex flex-col gap-8">
@@ -60,10 +69,7 @@ const Home: NextPage = () => {
             alt="uniswap"
             width={100}
             height={100}
-            onDoubleClick={() => {
-              setAppUrl("https://app.uniswap.org/swap");
-              setModalIsOpen(true);
-            }}
+            onDoubleClick={() => handleIconDoubleClick("https://app.uniswap.org/swap")}
           />
         </div>
         <div>
@@ -73,10 +79,7 @@ const Home: NextPage = () => {
             alt="aave"
             width={100}
             height={100}
-            onDoubleClick={() => {
-              setAppUrl("https://app.aave.com/");
-              setModalIsOpen(true);
-            }}
+            onDoubleClick={() => handleIconDoubleClick("https://app.aave.com/")}
           />
         </div>
         <div>
@@ -87,7 +90,8 @@ const Home: NextPage = () => {
             width={100}
             height={100}
             onDoubleClick={() => {
-              console.log("To be implemented");
+              if (!connectedAddress) return notification.error("Please connect your wallet");
+              setNewDappModalIsOpen(true);
             }}
           />
         </div>
@@ -99,6 +103,21 @@ const Home: NextPage = () => {
           selectedNetwork={selectedNetwork}
           setModalIsOpen={setModalIsOpen}
           address={connectedAddress}
+        />
+      )}
+
+      {newDappModalIsOpen && (
+        <ModalNewDappInput
+          appUrl={appUrl}
+          setModalIsOpen={setNewDappModalIsOpen}
+          setAppUrl={setAppUrl}
+          onClick={() => {
+            if (!isValidUrl(debounceAppUrl)) {
+              return notification.error("Please enter a valid url");
+            }
+            setModalIsOpen(true);
+            setNewDappModalIsOpen(false);
+          }}
         />
       )}
     </>

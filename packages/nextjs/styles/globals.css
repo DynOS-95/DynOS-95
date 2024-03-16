@@ -7,6 +7,13 @@
   background: oklch(var(--b2));
 }
 
+.dynamic-shadow-dom {
+ --dynamic-button-primary-background: transparent;
+ --dynamic-button-primary-border: 0;
+ --dynamic-button-primary-font-size: 14px;
+ --dynamic-font-family-primary: sans-serif;
+}
+
 body {
   min-height: 100vh;
 }

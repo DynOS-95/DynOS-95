@@ -5,7 +5,7 @@ import { ThemeProvider } from "~~/components/ThemeProvider";
 import "~~/styles/globals.css";
 
 const baseUrl = "https://dynos95.vercel.app";
-const imageUrl = `${baseUrl}/thumbnail.jpg`;
+const imageUrl = `${baseUrl}/thumbnail.png`;
 
 const title = "DynOS 95";
 const titleTemplate = "%s | Scaffold-ETH 2";

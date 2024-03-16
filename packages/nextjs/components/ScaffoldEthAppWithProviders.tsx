@@ -5,6 +5,7 @@ import { Header } from "./Header";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
+import { ImpersonatorIframeProvider } from "@impersonator/iframe";
 import { Toaster } from "react-hot-toast";
 import { Footer } from "~~/components/Footer";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
@@ -49,7 +50,9 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
       }}
     >
       <DynamicWagmiConnector>
-        <ScaffoldEthApp>{children}</ScaffoldEthApp>
+        <ImpersonatorIframeProvider>
+          <ScaffoldEthApp>{children}</ScaffoldEthApp>
+        </ImpersonatorIframeProvider>
       </DynamicWagmiConnector>
     </DynamicContextProvider>
   );

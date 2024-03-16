@@ -66,6 +66,16 @@ const Home: NextPage = () => {
         <div className="flex flex-col gap-8">
           <div>
             <Image
+              src="/assets/pancake.png"
+              className="cursor-pointer"
+              alt="uniswap"
+              width={100}
+              height={100}
+              onDoubleClick={() => handleIconDoubleClick("https://pancakeswap.finance/swap?chain=base")}
+            />
+          </div>
+          <div>
+            <Image
               src="/assets/uniswap.png"
               className="cursor-pointer"
               alt="uniswap"
@@ -74,6 +84,7 @@ const Home: NextPage = () => {
               onDoubleClick={() => handleIconDoubleClick("https://app.uniswap.org/swap")}
             />
           </div>
+
           <div>
             <Image
               src="/assets/aave.png"

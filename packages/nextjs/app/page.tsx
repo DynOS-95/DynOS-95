@@ -115,10 +115,10 @@ const Home: NextPage = () => {
 
       {modalIsOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-8 md:p-0 z-10"
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-3 md:p-0 z-10"
           onClick={() => setModalIsOpen(false)}
         >
-          <Window className="window w-10/12 h-[80%]">
+          <Window className="window w-[95%] md:w-10/12 h-[80%]">
             <WindowHeader className="window-title flex justify-between">
               {appUrl && <span>{appUrl}</span>}
               <Button onClick={() => setModalIsOpen(false)}>
@@ -126,12 +126,12 @@ const Home: NextPage = () => {
               </Button>
             </WindowHeader>
             {connectedAddress && isAddress(connectedAddress) && isValidUrl(debounceAppUrl) ? (
-              <div className="flex items-center flex-col flex-grow p-4 rounded-md">
+              <div className="flex items-center flex-col flex-grow p-4 rounded-md h-full">
                 <div className="border-2 border-gray-200 rounded-md  w-full h-full">
-                  <div className="w-full rounded-md p-1">
+                  <div className="w-full rounded-md p-1 h-full">
                     <ImpersonatorIframe
                       key={selectedNetwork.name + connectedAddress + debounceAppUrl}
-                      height={"600px"}
+                      height={"100%"}
                       width={"100%"} //set it to the browser width
                       src={debounceAppUrl}
                       address={connectedAddress}

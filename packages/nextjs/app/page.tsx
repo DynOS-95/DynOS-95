@@ -8,6 +8,7 @@ import { useImpersonatorIframe } from "@impersonator/iframe";
 import type { NextPage } from "next";
 import { useDebounceValue } from "usehooks-ts";
 import { useAccount } from "wagmi";
+import { TokenCounter } from "~~/app/_components/TokenCounter";
 import { useTransactor } from "~~/hooks/scaffold-eth";
 import { isValidUrl } from "~~/utils/isValidUrl";
 import { getTargetNetworks, notification } from "~~/utils/scaffold-eth";
@@ -61,39 +62,44 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-8">
-        <div>
-          <Image
-            src="/assets/uniswap.png"
-            className="cursor-pointer"
-            alt="uniswap"
-            width={100}
-            height={100}
-            onDoubleClick={() => handleIconDoubleClick("https://app.uniswap.org/swap")}
-          />
+      <div className="flex justify-between">
+        <div className="flex flex-col gap-8">
+          <div>
+            <Image
+              src="/assets/uniswap.png"
+              className="cursor-pointer"
+              alt="uniswap"
+              width={100}
+              height={100}
+              onDoubleClick={() => handleIconDoubleClick("https://app.uniswap.org/swap")}
+            />
+          </div>
+          <div>
+            <Image
+              src="/assets/aave.png"
+              className="cursor-pointer"
+              alt="aave"
+              width={100}
+              height={100}
+              onDoubleClick={() => handleIconDoubleClick("https://app.aave.com/")}
+            />
+          </div>
+          <div>
+            <Image
+              src="/assets/new-dapp.png"
+              className="cursor-pointer"
+              alt="new"
+              width={100}
+              height={100}
+              onDoubleClick={() => {
+                if (!connectedAddress) return notification.error("Please connect your wallet");
+                setNewDappModalIsOpen(true);
+              }}
+            />
+          </div>
         </div>
         <div>
-          <Image
-            src="/assets/aave.png"
-            className="cursor-pointer"
-            alt="aave"
-            width={100}
-            height={100}
-            onDoubleClick={() => handleIconDoubleClick("https://app.aave.com/")}
-          />
-        </div>
-        <div>
-          <Image
-            src="/assets/new-dapp.png"
-            className="cursor-pointer"
-            alt="new"
-            width={100}
-            height={100}
-            onDoubleClick={() => {
-              if (!connectedAddress) return notification.error("Please connect your wallet");
-              setNewDappModalIsOpen(true);
-            }}
-          />
+          <TokenCounter />
         </div>
       </div>
 

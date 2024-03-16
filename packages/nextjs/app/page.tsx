@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { ModalIframe } from "./_components/ModalIframe";
 import { useImpersonatorIframe } from "@impersonator/iframe";
 import type { NextPage } from "next";
-import { Button } from "react95";
 import { useDebounceValue } from "usehooks-ts";
 import { useAccount } from "wagmi";
 import { useTransactor } from "~~/hooks/scaffold-eth";
@@ -52,16 +52,19 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="px-5 mb-4">
-          <Button
+      <div className="flex items-center flex-row">
+        <div>
+          <Image
+            src="/assets/uniswap.png"
+            className="cursor-pointer"
+            alt="uniswap"
+            width={100}
+            height={100}
             onDoubleClick={() => {
               setAppUrl("https://app.uniswap.org/swap");
               setModalIsOpen(true);
             }}
-          >
-            Uniswap
-          </Button>
+          />
         </div>
       </div>
 

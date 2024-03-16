@@ -9,9 +9,10 @@ const baseUrl = process.env.VERCEL_URL
   : `http://localhost:${process.env.PORT || 3000}`;
 const imageUrl = `${baseUrl}/thumbnail.jpg`;
 
-const title = "Scaffold-ETH 2 App";
+const title = "DynOS 95";
 const titleTemplate = "%s | Scaffold-ETH 2";
-const description = "Built with 🏗 Scaffold-ETH 2";
+const description =
+  "DynOS 95 is built to improve the onboarding experience to web3, providing a friendly environment where users can connect to any DApps with their familiar web2 login system.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),

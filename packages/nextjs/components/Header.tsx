@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { DynamicWidget, useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import {
   AppBar,
@@ -31,7 +32,10 @@ export const Header = () => {
       <Toolbar style={{ justifyContent: "space-between" }}>
         <div style={{ position: "relative", display: "inline-block" }}>
           <Button onClick={() => setOpen(!open)} active={open} style={{ fontWeight: "bold" }}>
-            Start
+            <div className="flex gap-1.5 items-center">
+              <Image src="/assets/dyno.png" width={20} height={20} alt="DynOS logo" />
+              DynOS
+            </div>
           </Button>
           {open && (
             <MenuList

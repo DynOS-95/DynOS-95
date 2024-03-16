@@ -5,6 +5,7 @@ import { Header } from "./Header";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
+import { ImpersonatorIframeProvider } from "@impersonator/iframe";
 import { styleReset } from "react95";
 import original from "react95/dist/themes/original";
 import { Toaster } from "react-hot-toast";
@@ -48,12 +49,13 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
         walletConnectors: [EthereumWalletConnectors],
       }}
     >
-      {" "}
       <GlobalStyles />
       <ThemeProvider theme={original}>
         <ProgressBar />
         <DynamicWagmiConnector>
-          <ScaffoldEthApp>{children}</ScaffoldEthApp>
+          <ImpersonatorIframeProvider>
+            <ScaffoldEthApp>{children}</ScaffoldEthApp>
+          </ImpersonatorIframeProvider>
         </DynamicWagmiConnector>
       </ThemeProvider>
     </DynamicContextProvider>

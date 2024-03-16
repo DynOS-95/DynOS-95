@@ -34,7 +34,7 @@ export const Header = () => {
           <Button onClick={() => setOpen(!open)} active={open} style={{ fontWeight: "bold" }}>
             <div className="flex gap-1.5 items-center">
               <Image src="/assets/dyno.png" width={20} height={20} alt="DynOS logo" />
-              DynOS
+              DynOS 95
             </div>
           </Button>
           {open && (

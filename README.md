@@ -1,80 +1,40 @@
-# 🏗 Scaffold-ETH 2
+# 🦕 DynOS 95 - ETH London 2024 (by BuidlGuidl team)
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+Our platform is built to improve the onboarding experience to web3, providing a friendly environment where users can connect to any DApps with their familiar web2 login system, powered by Dynamic and ERC4337 AA.
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+![DynOS95_1](https://github.com/carletex/ethlondon-2024/assets/55535804/b41c6872-a614-4b98-aab8-d3a1926b3aa8)
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+**Stack:**
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+- 🏗 **Scaffold-eth:** Made it very fast to create and deploy the smart contract and build the UI. Built using NextJS, Hardhat, Wagmi, Viem, and Typescript.
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+- 🔐 **Dynamic:** Handles all the email and social login “magic”, letting non crypto-native users to login with their known web2 login methods, reducing the gap for mass adoption. Users can then use Dynamic dashboard to configure their accounts even further.
 
-## Requirements
+- 💻 **Zerodev:** Is a modular SDK based on Kernel (open-source). Zerodev is integrated with Dynamic, and we’re using it to create the ERC4337 accounts, to let us sponsor some transactions to DynOS 95 users.
 
-Before you begin, you need to install the following tools:
+- 🔵 **Base ERC4337:** We have an ERC20 contract in Base to reward our users with some DOST tokens, which after their first login can be claimed for free without paying for gas, and will be sent to their ERC4337 account .
 
-- [Node (>= v18.17)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+- 🎨 **Nouns DAO** artwork assets and our Nouns-inspired custom assets make UI enjoyable and more user-friendly.
 
-## Quickstart
+![DynOS95_2](https://github.com/carletex/ethlondon-2024/assets/55535804/25c431f9-ed0e-4843-8b1f-9e5a61a35e65)
 
-To get started with Scaffold-ETH 2, follow the steps below:
+## Project description
 
-1. Clone this repo & install dependencies
+UX in Web 3 is broken, which makes it hard to get mass adopted. 
 
-```
-git clone https://github.com/scaffold-eth/scaffold-eth-2.git
-cd scaffold-eth-2
-yarn install
-```
+Having to deal with wallets, public addresses, private keys, seed phrase, self-custody, signing transactions, and all of that from the very beginning, is an intimidating and sometimes dangerous experience, even if it’s an experienced developer who is landing to web3.
 
-2. Run a local network in the first terminal:
+**DynOS 95** is built to improve the onboarding experience to web3, providing a friendly environment where users can connect to any DApps with their familiar web2 login system, powered by Dynamic and ERC4337 AA.
 
-```
-yarn chain
-```
+When users land to **DynOS 95** they will be able to use email and social login into our DApp, and once they’re logged in, they can interact with the different DApps seamlessly, without manually login into their systems, having a Single Sign On (SSO) experience.
 
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `hardhat.config.ts`.
+They can double click in their DApp shortcuts and interact with them, while DynOS 95 handles all the blockchain interactions, making the user experience really smooth. Using other DApps is also posible by using our simple browser.
+Users will be able to swap tokens at Uniswap, lend or borrow at Aave or buy NFTs in their favourite marketplaces with no friction.
 
-3. On a second terminal, deploy the test contract:
+To reward DynOS 95 users, we’ll let them claim some DOST tokens gasless (sponsored fees), after they log into DynOS 95 for the first time. which we’ll be sending to their ERC4337 account.
 
-```
-yarn deploy
-```
+All of this is wrapped with Nouns inspired UI to provide a friendly and enjoyable experience while interacting with their favourite DApps.
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
+Our web3 app is not just a platform, but a door to the crypto world, aimed at teaching, involving, and thrilling users. We're making crypto easier to understand and access for everyone, step by step!
 
-4. On a third terminal, start your NextJS app:
-
-```
-yarn start
-```
-
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
-
-Run smart contract test with `yarn hardhat:test`
-
-- Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
-- Edit your frontend in `packages/nextjs/pages`
-- Edit your deployment scripts in `packages/hardhat/deploy`
-
-## Documentation
-
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+This is an MVP, but we believe this kind of UX could be integrated into popular onramp applications, like Coinbase or Binance, and improve the users onboarding experience.

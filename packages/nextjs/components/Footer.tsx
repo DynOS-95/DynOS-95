@@ -33,7 +33,7 @@ export const Footer = () => {
     const interval = setInterval(() => {
       index = (index + 1) % erc4337Facts.length;
       setTooltipText(erc4337Facts[index]);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 

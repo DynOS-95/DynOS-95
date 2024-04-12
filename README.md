@@ -1,4 +1,56 @@
-# 🦕 DynOS 95 - ETH London 2024 (by BuidlGuidl team)
+# 🦕 DynOS 95
+
+- 🏆 Finalist at ETH London 2024 (by [BuidlGuidl](https://buidlguidl.com/) team). Check submission [here](https://ethglobal.com/showcase/dynos-95-9n57a).
+- 🥇 Best onboarding UX of Dynamic
+- 🥈 Best UX/UI implemention of Nounsdao art
+- [README from our Hackathon POC at the end](#Hackathon-Readme)
+
+Open source platform to improve the onboarding experience to web3, providing a friendly environment where users can connect to any DApps with email and social accounts, powered by Dynamic and ERC4337 Account Abstraction.
+
+⚙️ Built using Scaffold-ETH, Dynamic, Zerodev, Base ERC4337, and Nouns DAO artwork assets.
+
+|                                                 Desktop                                                 |                                                Open Dapp                                                |
+| :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: |
+| ![DynOS95_1](https://github.com/carletex/DynOS-95/assets/55535804/1445fc8a-f2b0-4c80-867f-6354c6a6c525) | ![DynOS95_2](https://github.com/carletex/DynOS-95/assets/55535804/09015aae-561f-4dac-bf60-717b4d2c2c95) |
+
+## DynOS 95 Evolution
+
+We're taking DynOS 95 from a hackathon project to a real-world product for end users. In our vision, DynOS 95 will become a sort of "Home Base" to onboard new users to web3.
+
+Configured by crypto natives or web3-savvy users, shared with their families or closer circle, to provide a private, friendly environment for interacting with web3, and help them getting onboarded.
+
+Our goal is that crypto natives and web3-savvy users configure their own Dynos 95 workspaces and share it with their families or close circle to onboard them. to provide a private, friendly environment for interacting with web3, where crypto natives or web3-savvy users and sharing it with your family or close circle.
+
+We believe we could be one more link towards achieving mass adoption, helping onboard the next billion users.
+
+## Planned features
+
+**Customizable Web3 Workspace.**
+
+An admin, who is a web3 experienced user, sets up the workspace with a custom configuration. Example of some configurations that could be implemented (TBD):
+
+- Available DApps
+- Account abstraction provider
+- Multisig
+- Rules, limits or protections.
+
+**Private shared environment.**
+
+Once configured, the admin can invite family members or close friends who may be less familiar with Web3. This inclusive setup allows them to engage in activities like crypto transactions, yield farming, NFT purchases... under guided and secure conditions.
+
+New users will be able to create a DynOS 95 account with their email or social account, getting a crypto wallet thanks to Account Abstraction providers.
+
+Admin will be able to manage their access and permissions.
+
+**Integration with Onramp Providers.**
+
+To facilitate easy and secure entry points into the cryptocurrency market, DynOS 95 will integrate with leading onramp providers. This feature will allow users to convert from FIAT to crypto directly within the environment, ensuring a smooth and hassle-free experience.
+
+**Conclussion.**
+
+The evolution of DynOS 95 is aimed at not just simplifying the Web3 experience but also making it a communal and family-friendly venture. Our roadmap is designed to gradually introduce and integrate these features, ensuring that every step enhances user trust and engagement, paving the way for broader adoption of Web3.
+
+## Hackathon Readme
 
 Our platform is built to improve the onboarding experience to web3, providing a friendly environment where users can connect to any DApps with their familiar web2 login system, powered by Dynamic and ERC4337 AA.
 
@@ -20,7 +72,7 @@ Our platform is built to improve the onboarding experience to web3, providing a 
 
 ## Project description
 
-UX in Web 3 is broken, which makes it hard to get mass adopted. 
+UX in Web 3 is broken, which makes it hard to get mass adopted.
 
 Having to deal with wallets, public addresses, private keys, seed phrase, self-custody, signing transactions, and all of that from the very beginning, is an intimidating and sometimes dangerous experience, even if it’s an experienced developer who is landing to web3.
 

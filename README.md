@@ -53,6 +53,9 @@ The evolution of DynOS 95 is aimed at not just simplifying the Web3 experience b
 
 ## Hackathon Readme
 
+<details>
+  <summary>Open Hackathon Readme</summary>
+
 Our platform is built to improve the onboarding experience to Web3, providing a friendly environment where users can connect to any DApps with their familiar web2 login system, powered by Dynamic and ERC4337 AA.
 
 ![DynOS95_1](https://github.com/carletex/ethlondon-2024/assets/55535804/b41c6872-a614-4b98-aab8-d3a1926b3aa8)
@@ -71,7 +74,7 @@ Our platform is built to improve the onboarding experience to Web3, providing a 
 
 ![DynOS95_2](https://github.com/carletex/ethlondon-2024/assets/55535804/25c431f9-ed0e-4843-8b1f-9e5a61a35e65)
 
-## Project description
+### Project description
 
 UX in Web 3 is broken, which makes it hard to get mass adopted.
 
@@ -91,3 +94,5 @@ All of this is wrapped with Nouns inspired UI to provide a friendly and enjoyabl
 Our Web3 app is not just a platform, but a door to the crypto world, aimed at teaching, involving, and thrilling users. We're making crypto easier to understand and access for everyone, step by step!
 
 This is an MVP, but we believe this kind of UX could be integrated into popular onramp applications, like Coinbase or Binance, and improve the users onboarding experience.
+
+</details>

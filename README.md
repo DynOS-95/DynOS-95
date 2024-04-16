@@ -3,7 +3,7 @@
 - 🏆 Finalist at ETH London 2024 (by [BuidlGuidl](https://buidlguidl.com/) team). Check submission [here](https://ethglobal.com/showcase/dynos-95-9n57a).
 - 🥇 Best onboarding UX of Dynamic
 - 🥈 Best UX/UI implemention of Nounsdao art
-- [README from our Hackathon POC at the end](#Hackathon-Readme)
+- [Hackhathon README at the end](#Hackathon-Readme)
 
 Open source platform designed to improve the onboarding experience to Web3, providing a friendly environment where users can connect to any DApps with their email or social accounts.
 

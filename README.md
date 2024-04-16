@@ -43,10 +43,6 @@ New users will be able to create a DynOS 95 account with their email or social a
 
 Admin will be able to manage their access and permissions.
 
-**Integration with Onramp Providers.**
-
-To facilitate easy and secure entry points into the cryptocurrency market, DynOS 95 plans to integrate with leading onramp providers. This feature would allow users to convert from FIAT to crypto directly within DynOS environment, ensuring a smooth and hassle-free experience.
-
 **Conclussion.**
 
 The evolution of DynOS 95 is aimed at not just simplifying the Web3 experience but also making it a communal and family-friendly venture. Our roadmap is designed to gradually introduce and integrate these features, ensuring that every step enhances user trust and engagement, paving the way for broader adoption of Web3.

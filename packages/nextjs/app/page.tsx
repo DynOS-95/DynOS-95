@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { ModalAddDappInput } from "./_components/ModalAddDappInput";
 import { ModalIframe } from "./_components/ModalIframe";
 import { ModalNewDappInput } from "./_components/ModalNewDappInput";
 import { useImpersonatorIframe } from "@impersonator/iframe";
 import type { NextPage } from "next";
-import { useDebounceValue } from "usehooks-ts";
+import { useDebounceValue, useReadLocalStorage } from "usehooks-ts";
 import { useAccount } from "wagmi";
 import { TokenCounter } from "~~/app/_components/TokenCounter";
 import { useTransactor } from "~~/hooks/scaffold-eth";
@@ -18,9 +19,13 @@ const targetNetworks = getTargetNetworks();
 const Home: NextPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [newDappModalIsOpen, setNewDappModalIsOpen] = useState(false);
+  const [addDappModalIsOpen, setAddDappModalIsOpen] = useState(false);
   const [selectedNetwork] = useState(targetNetworks[0]);
   const [appUrl, setAppUrl] = useState("");
   const [debounceAppUrl] = useDebounceValue(appUrl, 500);
+  const customDapps = useReadLocalStorage<{ name: string; url: string }[]>("custom-dapps", {
+    initializeWithValue: false,
+  });
 
   const { address: connectedAddress } = useAccount();
 
@@ -63,7 +68,7 @@ const Home: NextPage = () => {
   return (
     <>
       <div className="flex justify-between">
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 max-h-[60vh] flex-wrap">
           <div>
             <Image
               src="/assets/pancake.png"
@@ -84,7 +89,6 @@ const Home: NextPage = () => {
               onDoubleClick={() => handleIconDoubleClick("https://app.uniswap.org/swap")}
             />
           </div>
-
           <div>
             <Image
               src="/assets/aave.png"
@@ -108,6 +112,40 @@ const Home: NextPage = () => {
               }}
             />
           </div>
+          {customDapps?.map((dapp, index) => {
+            return (
+              <div key={`${dapp.url}-${index}`} className="px-2 flex flex-col items-center justify-center gap-2">
+                <Image
+                  src="/assets/custom-dapp.png"
+                  className="cursor-pointer"
+                  alt="new"
+                  width={70}
+                  height={70}
+                  onDoubleClick={() => {
+                    setAppUrl(dapp.url);
+                    setModalIsOpen(true);
+                  }}
+                />
+                <p className="text-white text-center">{dapp.name}</p>
+              </div>
+            );
+          })}
+          <div className="px-2 flex flex-col items-center justify-center gap-2">
+            <Image
+              src="/assets/icon-add-folder.png"
+              className="cursor-pointer"
+              alt="new"
+              width={70}
+              height={70}
+              onDoubleClick={() => {
+                if (!connectedAddress) return notification.error("Please connect your wallet");
+                setAddDappModalIsOpen(true);
+              }}
+            />
+            <p className="text-white text-center">
+              Add your <br /> dapp
+            </p>
+          </div>
         </div>
         <div>
           <TokenCounter />
@@ -122,7 +160,6 @@ const Home: NextPage = () => {
           address={connectedAddress}
         />
       )}
-
       {newDappModalIsOpen && (
         <ModalNewDappInput
           appUrl={appUrl}
@@ -137,6 +174,8 @@ const Home: NextPage = () => {
           }}
         />
       )}
+
+      {addDappModalIsOpen && <ModalAddDappInput setModalIsOpen={setAddDappModalIsOpen} />}
     </>
   );
 };
